@@ -1,0 +1,94 @@
+{
+  "nodes": {
+    "base16-schemes": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1696158499,
+        "narHash": "sha256-5yIHgDTPjoX/3oDEfLSQ0eJZdFL1SaCfb9d6M0RmOTM=",
+        "owner": "tinted-theming",
+        "repo": "base16-schemes",
+        "rev": "a9112eaae86d9dd8ee6bb9445b664fba2f94037a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tinted-theming",
+        "repo": "base16-schemes",
+        "type": "github"
+      }
+    },
+    "catppuccin-userstyles": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1753703880,
+        "narHash": "sha256-afcGFa80N1Ck/AgiVL9ftiU7P/b6+7i5VCTXVYxU8IQ=",
+        "owner": "catppuccin",
+        "repo": "userstyles",
+        "rev": "8bcc400a5db9070867f90a410f2c1a9d63719a05",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "userstyles",
+        "type": "github"
+      }
+    },
+    "discord-userstyle": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-aohGUCm6YadZds6eiwnfICb6hc35jIGgGZxQtjrocXA=",
+        "type": "file",
+        "url": "https://catppuccin.github.io/discord/dist/catppuccin-mocha.theme.css"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://catppuccin.github.io/discord/dist/catppuccin-mocha.theme.css"
+      }
+    },
+    "nix-colors": {
+      "inputs": {
+        "base16-schemes": "base16-schemes",
+        "nixpkgs-lib": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1707825078,
+        "narHash": "sha256-hTfge2J2W+42SZ7VHXkf4kjU+qzFqPeC9k66jAUBMHk=",
+        "owner": "misterio77",
+        "repo": "nix-colors",
+        "rev": "b01f024090d2c4fc3152cd0cf12027a7b8453ba1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "misterio77",
+        "repo": "nix-colors",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1753432016,
+        "narHash": "sha256-cnL5WWn/xkZoyH/03NNUS7QgW5vI7D1i74g48qplCvg=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "6027c30c8e9810896b92429f0092f624f7b1aace",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "ref": "nixpkgs-unstable",
+        "type": "indirect"
+      }
+    },
+    "root": {
+      "inputs": {
+        "catppuccin-userstyles": "catppuccin-userstyles",
+        "discord-userstyle": "discord-userstyle",
+        "nix-colors": "nix-colors",
+        "nixpkgs": "nixpkgs"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
