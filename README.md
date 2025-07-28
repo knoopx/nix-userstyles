@@ -2,6 +2,8 @@
 
 This module exports a nix function to generate userstyles for popular websites using your own color palette.
 
+![nix-userstyles](screenshot.png)
+
 ## Usage
 
 ```nix
