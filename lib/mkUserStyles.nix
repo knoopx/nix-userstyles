@@ -47,35 +47,33 @@
       vars);
 
   lessVars = {
-    lightFlavor = "mocha";
-    darkFlavor = "mocha";
     accentColor = "lavender";
+    additions = 0;
+    applyToDocument = 0;
+    bg-blur = "20px";
+    bg-opacity = 0.2;
+    colorizeLogo = 0;
     contrastColor = "@accentColor";
+    darkenShadows = 1;
+    darkFlavor = "mocha";
+    graphUseAccentColor = 1;
+    hideProfilePictures = 0;
+    highlight-redirect = 0;
     highlightColor = "@accentColor";
-
     highlightColor1 = "lavender";
     highlightColor2 = "green";
     highlightColor3 = "peach";
     highlightColor4 = "blue";
-    styleBoardAndPieces = 1;
-
-    applyToDocument = 0;
-    graphUseAccentColor = 1;
-    bg-opacity = 0.2;
-    bg-blur = "20px";
-    zen = 0;
-    styleVideoPlayer = 1;
-    stylePieces = 1;
-    hideProfilePictures = 0;
-    additions = 0;
-    urls = "localhost";
-    darkenShadows = 1;
-    colorizeLogo = 0;
     lighterMessages = 0;
-    highlight-redirect = 0;
+    lightFlavor = "mocha";
     logo = 1;
     oled = 0;
     sponsorBlock = 1;
+    styleBoardAndPieces = 1;
+    stylePieces = 1;
+    styleVideoPlayer = 1;
+    urls = "localhost";
+    zen = 0;
   };
 
   userStylesStr = lib.concatStringsSep " " userStyles;
@@ -100,6 +98,15 @@ in
         fi
       done
 
+      if [ -f catppuccin.userstyles.css ]; then
+        substituteInPlace catppuccin.userstyles.css \
+          ${lib.concatStringsSep " \\\n        " (lib.zipListsWith (
+          mochaColor: paletteColor: "--replace-warn '${mochaColor}' '${paletteColor}'"
+        )
+        catppuccinMochaPalette
+        (lib.attrValues palette))}
+      fi
+
       # Build extra userstyles
       for style in ${userStylesStr}; do
         file="${extraPkg}/$style/userstyle.css"
@@ -107,15 +114,6 @@ in
           (echo "${cssVars}"; cat "$file") | sass --quiet - >> extra.userstyles.css
         fi
       done
-
-      if [ -f extra.userstyles.css ]; then
-        substituteInPlace extra.userstyles.css \
-          ${lib.concatStringsSep " \\\n        " (lib.zipListsWith (
-          mochaColor: paletteColor: "--replace-warn '${mochaColor}' '${paletteColor}'"
-        )
-        catppuccinMochaPalette
-        (lib.attrValues palette))}
-      fi
 
       cat *.userstyles.css | ${lib.getExe importantize} > $out
     '';
