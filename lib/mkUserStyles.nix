@@ -21,7 +21,10 @@
     installPhase = ''
       mkdir -p $out
       for pkg in ${lib.concatStringsSep " " extraPkgs}; do
-        cp $pkg $out/
+        name=$(basename "$pkg" ".userstyle.css")
+        name=''${name#*-}
+        mkdir -p "$out/$name"
+        cp "$pkg" "$out/$name/userstyle.css"
       done
     '';
   };
@@ -101,6 +104,7 @@ in
       # build extra userstyles
       for style in ${userStylesStr}; do
         file="${extraPkg}/$style/userstyle.css"
+        echo "$file"
         if [ -f "$file" ]; then
           (echo "${cssVars}"; cat "$file") | sass --quiet - >> extra.userstyles.css
         fi
