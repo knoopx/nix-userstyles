@@ -89,7 +89,7 @@ in
     buildPhase = ''
       export NODE_PATH=${pkgs.nodePackages.less-plugin-clean-css}/lib/node_modules
 
-      # Build catppuccin userstyles
+      # build catppuccin userstyles
       for style in ${userStylesStr}; do
         file="${catppuccin-userstyles}/styles/$style/catppuccin.user.less"
         if [ -f "$file" ]; then
@@ -98,16 +98,7 @@ in
         fi
       done
 
-      if [ -f catppuccin.userstyles.css ]; then
-        substituteInPlace catppuccin.userstyles.css \
-          ${lib.concatStringsSep " \\\n        " (lib.zipListsWith (
-          mochaColor: paletteColor: "--replace-warn '${mochaColor}' '${paletteColor}'"
-        )
-        catppuccinMochaPalette
-        (lib.attrValues palette))}
-      fi
-
-      # Build extra userstyles
+      # build extra userstyles
       for style in ${userStylesStr}; do
         file="${extraPkg}/$style/userstyle.css"
         if [ -f "$file" ]; then
@@ -115,6 +106,16 @@ in
         fi
       done
 
-      cat *.userstyles.css | ${lib.getExe importantize} > $out
+      # replace catppuccin mocha colors with user-defined palette colors
+      cat *.userstyles.css > userstyles.css
+      substituteInPlace userstyles.css \
+        ${lib.concatStringsSep " \\\n        " (lib.zipListsWith (
+          mochaColor: paletteColor: "--replace-warn '${mochaColor}' '${paletteColor}'"
+        )
+        catppuccinMochaPalette
+        (lib.attrValues palette))}
+
+      # !important
+      cat userstyles.css | ${lib.getExe importantize} > $out
     '';
   }
