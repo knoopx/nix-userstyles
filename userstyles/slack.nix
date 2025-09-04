@@ -15,6 +15,29 @@ in
     name = "slack.userstyle.css";
     text = ''
       @-moz-document domain("slack.com") {
+        .sk-client-theme--dark, .sk-client-theme--light-inverted-sidebar {
+          --sk_primary_foreground: ${hexToRgb palette.base05};
+          --sk_primary_background: ${hexToRgb palette.base00};
+          --sk_inverted_foreground: ${hexToRgb palette.base00};
+          --sk_inverted_background: ${hexToRgb palette.base05};
+          --sk_foreground_max: ${hexToRgb palette.base07};
+          --sk_foreground_high: ${hexToRgb palette.base06};
+          --sk_foreground_mid: ${hexToRgb palette.base05};
+          --sk_foreground_low: ${hexToRgb palette.base04};
+          --sk_foreground_soft: ${hexToRgb palette.base03};
+          --sk_foreground_min: ${hexToRgb palette.base02};
+          --sk_foreground_max_solid: ${hexToRgb palette.base04};
+          --sk_foreground_high_solid: ${hexToRgb palette.base03};
+          --sk_foreground_mid_solid: ${hexToRgb palette.base02};
+          --sk_foreground_low_solid: ${hexToRgb palette.base01};
+          --sk_foreground_soft_solid: ${hexToRgb palette.base01};
+          --sk_foreground_min_solid: ${hexToRgb palette.base00};
+          --sk_highlight: ${hexToRgb palette.base0D};
+          --sk_highlight_hover: ${hexToRgb palette.base0D};
+          --sk_highlight_accent: ${hexToRgb palette.base0D};
+          --sk_secondary_highlight: ${hexToRgb palette.base0A};
+          color-scheme: dark;
+        }
         .sk-client-theme--dark {
           --dt_color-base-pry: #${palette.base00};
           --dt_color-base-pry-hover: #${palette.base01}14;
