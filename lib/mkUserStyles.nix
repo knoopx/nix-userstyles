@@ -49,35 +49,37 @@
       )
       vars);
 
-  lessVars = {
-    accentColor = "lavender";
-    additions = 0;
-    applyToDocument = 0;
-    bg-blur = "20px";
-    bg-opacity = 0.2;
-    colorizeLogo = 0;
-    contrastColor = "@accentColor";
-    darkenShadows = 1;
-    darkFlavor = "mocha";
-    graphUseAccentColor = 1;
-    hideProfilePictures = 0;
-    highlight-redirect = 0;
-    highlightColor = "@accentColor";
-    highlightColor1 = "lavender";
-    highlightColor2 = "green";
-    highlightColor3 = "peach";
-    highlightColor4 = "blue";
-    lighterMessages = 0;
-    lightFlavor = "mocha";
-    logo = 1;
-    oled = 0;
-    sponsorBlock = 1;
-    styleBoardAndPieces = 1;
-    stylePieces = 1;
-    styleVideoPlayer = 1;
-    urls = "localhost";
-    zen = 0;
-  };
+   lessVars = {
+     accentColor = "lavender";
+     additions = 0;
+     applyToDocument = 0;
+     bg-blur = "20px";
+     bg-opacity = 0.2;
+     colorizeLogo = 0;
+     contrastColor = "@accentColor";
+     darkenShadows = 1;
+     darkFlavor = "mocha";
+     graphUseAccentColor = 1;
+     hideProfilePictures = 0;
+     highlight-redirect = 0;
+     highlightColor = "@accentColor";
+     highlightColor1 = "lavender";
+     highlightColor2 = "green";
+     highlightColor3 = "peach";
+     highlightColor4 = "blue";
+     lighterMessages = 0;
+     lightFlavor = "mocha";
+     logo = 1;
+     oled = 0;
+     sponsorBlock = 1;
+     styleBoardAndPieces = 1;
+     stylePieces = 1;
+     styleVideoPlayer = 1;
+     urls = "localhost";
+     zen = 0;
+   };
+
+
 
   userStylesStr = lib.concatStringsSep " " userStyles;
   catppuccinMochaPalette = lib.attrValues nix-colors.colorSchemes.catppuccin-mocha.palette;
@@ -89,6 +91,7 @@ in
       lessc
       nodePackages_latest.sass
     ];
+
     buildPhase = ''
       export NODE_PATH=${pkgs.nodePackages.less-plugin-clean-css}/lib/node_modules
 
@@ -96,7 +99,7 @@ in
       for style in ${userStylesStr}; do
         file="${catppuccin-userstyles}/styles/$style/catppuccin.user.less"
         if [ -f "$file" ]; then
-          (cat "$file"; echo ${lib.strings.escapeShellArg (lessVarDecl lessVars "")}) | \
+          (cat "${catppuccin-userstyles}/lib/lib.less"; cat "$file" | sed '\|@import "https://userstyles.catppuccin.com/lib/lib.less";|d'; echo ${lib.strings.escapeShellArg (lessVarDecl lessVars "")}) | \
             lessc --source-map-no-annotation --clean-css="-b --s0 --skip-rebase --skip-advanced --skip-aggressive-merging --skip-shorthand-compacting" - >> catppuccin.userstyles.css
         fi
       done
