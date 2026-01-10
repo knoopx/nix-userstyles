@@ -49,37 +49,36 @@
       )
       vars);
 
-   lessVars = {
-     accentColor = "lavender";
-     additions = 0;
-     applyToDocument = 0;
-     bg-blur = "20px";
-     bg-opacity = 0.2;
-     colorizeLogo = 0;
-     contrastColor = "@accentColor";
-     darkenShadows = 1;
-     darkFlavor = "mocha";
-     graphUseAccentColor = 1;
-     hideProfilePictures = 0;
-     highlight-redirect = 0;
-     highlightColor = "@accentColor";
-     highlightColor1 = "lavender";
-     highlightColor2 = "green";
-     highlightColor3 = "peach";
-     highlightColor4 = "blue";
-     lighterMessages = 0;
-     lightFlavor = "mocha";
-     logo = 1;
-     oled = 0;
-     sponsorBlock = 1;
-     styleBoardAndPieces = 1;
-     stylePieces = 1;
-     styleVideoPlayer = 1;
-     urls = "localhost";
-     zen = 0;
-   };
-
-
+  lessVars = {
+    accentColor = "lavender";
+    additions = 0;
+    applyToDocument = 0;
+    bg-blur = "20px";
+    bg-opacity = 0.2;
+    colorizeLogo = 0;
+    contrastColor = "@accentColor";
+    darkenShadows = 1;
+    darkFlavor = "mocha";
+    graphUseAccentColor = 1;
+    hideProfilePictures = 0;
+    highlight-redirect = 0;
+    highlightColor = "@accentColor";
+    highlightColor1 = "lavender";
+    highlightColor2 = "green";
+    highlightColor3 = "peach";
+    highlightColor4 = "blue";
+    lighterMessages = 0;
+    lightFlavor = "mocha";
+    logo = 1;
+    oled = 0;
+    sponsorBlock = 1;
+    styleBoardAndPieces = 1;
+    stylePieces = 1;
+    styleVideoPlayer = 1;
+    urls = "localhost";
+    zen = 0;
+    hideColorSampleTint = 1;
+  };
 
   userStylesStr = lib.concatStringsSep " " userStyles;
   catppuccinMochaPalette = lib.attrValues nix-colors.colorSchemes.catppuccin-mocha.palette;
