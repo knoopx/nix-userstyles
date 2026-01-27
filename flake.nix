@@ -12,7 +12,13 @@
     discord-userstyle.flake = false;
   };
 
-  outputs = {nixpkgs, ...} @ inputs: let
+  outputs = {
+    nixpkgs,
+    nix-colors,
+    catppuccin-userstyles,
+    discord-userstyle,
+    ...
+  }: let
     systems = [
       "x86_64-linux"
       "aarch64-linux"
@@ -29,10 +35,40 @@
     packages = forAllSystems (system: let
       pkgs = import nixpkgs {
         inherit system;
-        inherit (inputs) nixpkgs;
+      };
+      palette = nix-colors.colorSchemes.dracula.palette;
+      mkUserStyles = import ./lib/mkUserStyles.nix {
+        inherit pkgs;
+        lib = pkgs.lib;
+        inherit nix-colors catppuccin-userstyles discord-userstyle;
       };
     in {
-      mkUserStyles = pkgs.callPackage ./lib/mkUserStyles.nix inputs;
+      test = mkUserStyles palette [
+        "brave-search"
+        "bsky"
+        "chatgpt"
+        "cinny"
+        "claude"
+        "devdocs"
+        "discord"
+        "duckduckgo"
+        "github"
+        "google"
+        "hacker-news"
+        "lobste.rs"
+        "nixos-*"
+        "npm"
+        "ollama"
+        "perplexity"
+        "qwant"
+        "reddit"
+        "spotify-web"
+        "stack-overflow"
+        "telegram"
+        "whatsapp-web"
+        "wikipedia"
+        "youtube"
+      ];
     });
   };
 }
