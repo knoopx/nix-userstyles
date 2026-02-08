@@ -43,6 +43,7 @@
         inherit nix-colors catppuccin-userstyles discord-userstyle;
       };
     in {
+      inherit mkUserStyles;
       test = mkUserStyles palette [
         "brave-search"
         "bsky"
