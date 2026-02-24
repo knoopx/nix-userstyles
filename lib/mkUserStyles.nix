@@ -88,7 +88,7 @@ in
     phases = ["buildPhase"];
     buildInputs = with pkgs; [
       lessc
-      nodePackages_latest.sass
+      dart-sass
     ];
 
     buildPhase = ''
