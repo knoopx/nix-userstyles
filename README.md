@@ -1,5 +1,7 @@
 # nix-userstyles
 
+**DEPCREATED**: started mantaining my own styles at https://github.com/knoopx/userContent.css
+
 This module exports a nix function to generate userstyles for popular websites using your own color palette.
 
 ![nix-userstyles](screenshot.png)
